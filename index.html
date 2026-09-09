@@ -1,0 +1,974 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="LK Digital Tools — smart solutions, simply for life.">
+  <meta name="theme-color" content="#020812">
+  <meta name="robots" content="index, follow">
+  <meta name="lk-site-version" content="1.3.6">
+
+  <link rel="canonical" href="https://lk-digital-tools.github.io/">
+  <link rel="preload" as="image" href="assets/milky-way.webp" type="image/webp">
+  <link rel="icon" href="assets/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/favicon-192x192.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+
+  <meta property="og:title" content="LK Digital Tools">
+  <meta property="og:description" content="Smart solutions, simply for life.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:url" content="https://lk-digital-tools.github.io/">
+  <meta property="og:image" content="https://lk-digital-tools.github.io/assets/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="LK Digital Tools on a Milky Way background">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="LK Digital Tools">
+  <meta name="twitter:description" content="Smart solutions, simply for life.">
+  <meta name="twitter:image" content="https://lk-digital-tools.github.io/assets/og-image.jpg">
+
+  <title>LK Digital Tools — Smart solutions, simply for life.</title>
+  <style>
+:root {
+  --ink-1000: #020812;
+  --text: #f5f0e8;
+  --muted: #9aa9bb;
+  --line: rgba(148, 169, 194, .17);
+  --line-strong: rgba(148, 169, 194, .28);
+  --gold: #f5a623;
+  --gold-soft: #ffc55a;
+  --max: 1440px;
+  --serif: Georgia, 'Times New Roman', serif;
+  --sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+* { box-sizing: border-box; }
+html {
+  min-height: 100%;
+  overflow-x: clip;
+  scroll-behavior: smooth;
+  background: #02060d;
+}
+body {
+  min-width: 320px;
+  min-height: 100svh;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  overflow-x: clip;
+  color: var(--text);
+  font-family: var(--sans);
+  background:
+    linear-gradient(180deg, rgba(1, 7, 16, .62) 0%, rgba(2, 9, 19, .50) 54%, rgba(1, 6, 13, .72) 100%),
+    url('assets/milky-way.jpg') center center / cover fixed no-repeat,
+    #02060d;
+}
+@supports (background-image: image-set(url('x.webp') type('image/webp'))) {
+  body {
+    background-image:
+      linear-gradient(180deg, rgba(1, 7, 16, .62) 0%, rgba(2, 9, 19, .50) 54%, rgba(1, 6, 13, .72) 100%),
+      image-set(
+        url('assets/milky-way.webp') type('image/webp'),
+        url('assets/milky-way.jpg') type('image/jpeg')
+      );
+  }
+}
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(circle at 50% 45%, transparent 0 30%, rgba(0, 5, 12, .16) 62%, rgba(0, 4, 10, .46) 100%);
+}
+main { flex: 1 0 auto; display: block; }
+img { display: block; max-width: 100%; }
+a { color: inherit; }
+button, a { -webkit-tap-highlight-color: transparent; }
+button { color: inherit; font: inherit; }
+:where(a, button):focus-visible {
+  outline: 2px solid var(--gold-soft);
+  outline-offset: 3px;
+}
+.shell { width: min(var(--max), calc(100% - 56px)); margin-inline: auto; }
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+.skip-link {
+  position: fixed;
+  left: 16px;
+  top: -80px;
+  z-index: 100;
+  padding: 10px 14px;
+  border-radius: 8px;
+  background: var(--gold);
+  color: #07111f;
+  text-decoration: none;
+  font-weight: 800;
+}
+.skip-link:focus { top: 16px; }
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  border-bottom: 1px solid rgba(148, 169, 194, .11);
+  background: rgba(2, 8, 18, .74);
+  backdrop-filter: blur(18px);
+}
+.nav-shell {
+  min-height: 88px;
+  display: grid;
+  grid-template-columns: minmax(245px, auto) 1fr;
+  align-items: center;
+  gap: 42px;
+}
+.brand-text {
+  width: max-content;
+  display: grid;
+  gap: 3px;
+  text-decoration: none;
+}
+.brand-text h1 {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: 1.58rem;
+  font-weight: 500;
+}
+.brand-text small { color: var(--muted); font-size: .78rem; letter-spacing: .02em; }
+.site-nav { justify-self: end; display: flex; align-items: center; gap: 12px; }
+.site-nav-inner { display: contents; }
+.menu-item { position: relative; }
+.menu-button {
+  min-height: 44px;
+  padding: 0 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid transparent;
+  border-radius: 11px;
+  background: transparent;
+  color: #ded9d2;
+  cursor: pointer;
+  font-size: .83rem;
+  letter-spacing: .035em;
+}
+.menu-button::after { content: '⌄'; color: var(--muted); font-size: .75rem; transform: translateY(-1px); }
+.menu-button:hover,
+.menu-item.open > .menu-button {
+  color: var(--gold-soft);
+  border-color: var(--line);
+  background: rgba(255, 255, 255, .025);
+}
+.dropdown {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 12px);
+  width: min(390px, calc(100vw - 32px));
+  padding: 18px;
+  border: 1px solid var(--line-strong);
+  border-radius: 16px;
+  background: rgba(5, 15, 27, .98);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, .48);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+  transition: opacity .18s ease, transform .18s ease, visibility .18s ease;
+}
+.menu-item.open > .dropdown,
+.menu-item:focus-within > .dropdown { opacity: 1; visibility: visible; transform: translateY(0); }
+.dropdown h2 { margin: 0 0 12px; font-family: var(--serif); font-size: 1.25rem; font-weight: 500; }
+.dropdown p { margin: 0; color: #b4bfcb; font-size: .88rem; line-height: 1.65; }
+.dropdown-list { display: grid; gap: 8px; margin-top: 14px; }
+.dropdown-link,
+.dropdown-note {
+  display: grid;
+  gap: 3px;
+  padding: 12px 13px;
+  border: 1px solid rgba(148, 169, 194, .13);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, .018);
+  text-decoration: none;
+}
+.dropdown-link:hover { border-color: rgba(245, 166, 35, .48); background: rgba(245, 166, 35, .055); }
+.dropdown-link strong, .dropdown-note strong { font-size: .88rem; }
+.dropdown-link span, .dropdown-note span { color: var(--muted); font-size: .76rem; line-height: 1.4; }
+.dropdown-meta { margin-top: 12px; color: var(--muted); font-size: .74rem; }
+.dropdown-principles { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 14px; }
+.dropdown-principles div {
+  padding: 11px;
+  border: 1px solid rgba(148, 169, 194, .13);
+  border-radius: 11px;
+  background: rgba(255, 255, 255, .018);
+}
+.dropdown-principles strong { display: block; margin-bottom: 4px; color: var(--gold-soft); font-size: .82rem; }
+.dropdown-principles span { color: var(--muted); font-size: .74rem; line-height: 1.45; }
+.nav-toggle {
+  width: 48px;
+  height: 48px;
+  display: none;
+  justify-self: end;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, .03);
+  cursor: pointer;
+}
+.nav-toggle span:not(.sr-only) { display: block; width: 20px; height: 2px; margin: 4px auto; background: var(--text); }
+
+.hero {
+  min-height: calc(100svh - 88px);
+  display: flex;
+  align-items: stretch;
+  border-bottom: 1px solid rgba(148, 169, 194, .1);
+  background: rgba(1, 7, 15, .12);
+}
+.hero-grid {
+  min-height: calc(100svh - 88px);
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
+}
+.system-stage {
+  --orbit-scale: 1;
+  position: relative;
+  width: 100%;
+  height: min(calc(100svh - 180px), 980px);
+  min-height: 620px;
+  min-width: 0;
+  isolation: isolate;
+}
+.system-stage::before {
+  content: '';
+  position: absolute;
+  inset: 6% 0 2%;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(245, 166, 35, .075), transparent 34%),
+    radial-gradient(circle at 50% 50%, rgba(42, 88, 123, .08), transparent 64%);
+  filter: blur(3px);
+}
+.orbit {
+  position: absolute;
+  left: 50%;
+  top: 47%;
+  width: calc(var(--orbit-width) * var(--orbit-scale));
+  height: calc(var(--orbit-height) * var(--orbit-scale));
+  border: 1px solid rgba(245, 166, 35, .23);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 24px rgba(245, 166, 35, .02);
+}
+.orbit:nth-of-type(even) { border-color: rgba(119, 168, 213, .13); border-style: dotted; }
+.orbit-1 { --orbit-width: 230px; --orbit-height: 150px; }
+.orbit-2 { --orbit-width: 340px; --orbit-height: 218px; }
+.orbit-3 { --orbit-width: 480px; --orbit-height: 300px; }
+.orbit-4 { --orbit-width: 650px; --orbit-height: 400px; }
+.orbit-5 { --orbit-width: 820px; --orbit-height: 492px; }
+.sun {
+  position: absolute;
+  left: 50%;
+  top: 47%;
+  z-index: 8;
+  width: 82px;
+  height: 82px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, #fff3cf 0 7%, #ffc44a 18%, rgba(245, 166, 35, .56) 36%, rgba(245, 166, 35, .06) 66%, transparent 74%);
+  animation: sun-pulse 3.8s ease-in-out infinite;
+}
+.lk-logo { display: block; border-radius: 50%; }
+.lk-logo img { width: 100%; height: 100%; border-radius: inherit; object-fit: contain; }
+.sun-logo { position: relative; z-index: 2; width: 46px; height: 46px; filter: drop-shadow(0 0 10px rgba(255, 197, 90, .35)); }
+.sun-ring { position: absolute; inset: -17px; border: 1px solid rgba(245, 166, 35, .24); border-radius: 50%; animation: halo-pulse 3.8s ease-in-out infinite; }
+.sun-ring-2 { inset: -33px; opacity: .55; animation-delay: .7s; }
+
+.planet-orbit {
+  --diameter: 400px;
+  --ellipse: .7;
+  position: absolute;
+  left: 50%;
+  top: 47%;
+  z-index: 9;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+.po-flow  { --diameter: 230px; --ellipse: .652173913; }
+.po-atlas { --diameter: 340px; --ellipse: .641176471; }
+.po-lens  { --diameter: 480px; --ellipse: .625; }
+.po-edge  { --diameter: 650px; --ellipse: .615384615; }
+.po-nova  { --diameter: 820px; --ellipse: .6; }
+.planet-holder {
+  position: absolute;
+  left: 0;
+  top: 0;
+  pointer-events: none;
+  will-change: transform;
+}
+.planet-counter { transform: translate(-50%, -50%); pointer-events: auto; }
+.planet {
+  position: relative;
+  z-index: 9;
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1 / 1;
+  border: 0;
+  border-radius: 50%;
+  color: #fff;
+  text-decoration: none;
+  cursor: default;
+  box-shadow:
+    inset -18px -16px 28px rgba(0, 0, 0, .48),
+    inset 9px 8px 24px rgba(255, 255, 255, .12),
+    0 18px 42px rgba(0, 0, 0, .38);
+  transition: transform .25s ease, filter .25s ease;
+}
+a.planet { cursor: pointer; }
+.planet::before {
+  content: '';
+  position: absolute;
+  inset: 7%;
+  border-radius: 50%;
+  opacity: .7;
+  background-image:
+    radial-gradient(circle at 20% 28%, rgba(255, 255, 255, .18) 0 2px, transparent 3px),
+    radial-gradient(circle at 65% 35%, rgba(255, 255, 255, .12) 0 4px, transparent 5px),
+    radial-gradient(circle at 35% 70%, rgba(0, 0, 0, .18) 0 5px, transparent 6px);
+  background-size: 38px 36px, 46px 44px, 58px 54px;
+}
+.planet span {
+  position: relative;
+  z-index: 2;
+  font-family: var(--serif);
+  font-size: .8rem;
+  letter-spacing: .08em;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, .9);
+}
+a.planet:hover, a.planet:focus-visible { transform: scale(1.08); filter: brightness(1.12); }
+.planet-atlas { width: 76px; color: #ffd25d; background: radial-gradient(circle at 28% 25%, #ffc55a 0 5%, #a86418 24%, #18324b 64%, #081421 100%); }
+.planet-nova  { width: 66px; background: radial-gradient(circle at 30% 24%, #afffea 0 5%, #287a73 33%, #0c282e 74%); }
+.planet-edge  { width: 68px; background: radial-gradient(circle at 30% 24%, #b7ddff 0 5%, #245e8f 36%, #0b1c31 75%); }
+.planet-flow  { width: 60px; background: radial-gradient(circle at 30% 24%, #f2c0ff 0 5%, #71456f 36%, #22152d 75%); }
+.planet-lens  { width: 58px; background: radial-gradient(circle at 30% 24%, #bcc9ff 0 5%, #3c4779 36%, #171a35 75%); }
+.system-legend {
+  position: absolute;
+  left: 50%;
+  bottom: 2px;
+  width: min(540px, 78%);
+  padding: 8px 12px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 14px;
+  transform: translateX(-50%);
+  border-radius: 999px;
+  background: rgba(1, 7, 15, .24);
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: .13em;
+  font-size: .66rem;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, .95);
+  backdrop-filter: blur(4px);
+}
+.legend-live { color: var(--gold); }
+.legend-line { height: 1px; background: linear-gradient(90deg, rgba(245, 166, 35, .9), rgba(245, 166, 35, .32) 46%, rgba(115, 152, 190, .22)); }
+.star { position: absolute; z-index: 3; width: 4px; height: 4px; border-radius: 50%; background: #fff6db; box-shadow: 0 0 9px 2px rgba(255, 193, 61, .65); }
+.star-a { left: 27%; top: 27%; }
+.star-b { right: 25%; top: 37%; }
+.star-c { left: 44%; bottom: 21%; }
+.star-d { right: 7%; bottom: 13%; }
+
+.site-footer { margin-top: auto; padding: 34px 0; background: rgba(1, 6, 13, .84); }
+.footer-grid { display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 20px; }
+.footer-logo { width: 58px; height: 58px; filter: drop-shadow(0 0 12px rgba(245, 166, 35, .18)); }
+.footer-meta { justify-self: end; display: flex; align-items: center; gap: 20px; color: var(--muted); font-size: .78rem; }
+.footer-meta a { text-decoration: none; }
+.footer-meta a:hover { color: var(--gold-soft); }
+
+@keyframes sun-pulse {
+  0%, 100% { transform: translate(-50%, -50%) scale(.96); filter: brightness(.96); }
+  50% { transform: translate(-50%, -50%) scale(1.04); filter: brightness(1.08); }
+}
+@keyframes halo-pulse {
+  0%, 100% { transform: scale(.9); opacity: .24; }
+  50% { transform: scale(1.1); opacity: .72; }
+}
+
+@media (max-width: 1180px) {
+  .nav-shell { gap: 18px; }
+  .site-nav { gap: 4px; }
+  .menu-button { padding-inline: 10px; }
+  .system-stage { max-width: 860px; margin-inline: auto; }
+}
+
+@media (max-width: 900px) {
+  body { background-attachment: scroll; background-position: center top; }
+  .shell { width: min(100% - 36px, var(--max)); }
+  .nav-shell { min-height: 84px; grid-template-columns: 1fr auto; }
+  .nav-toggle { display: block; }
+  .site-nav {
+    position: static;
+    grid-column: 1 / -1;
+    justify-self: stretch;
+    width: 100%;
+    height: 0;
+    margin-top: 0;
+    display: block;
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(-8px);
+    will-change: height, transform, opacity;
+    transition:
+      height .42s cubic-bezier(.25, .1, .25, 1),
+      margin-top .42s cubic-bezier(.25, .1, .25, 1),
+      opacity .22s ease,
+      transform .42s cubic-bezier(.25, .1, .25, 1),
+      visibility 0s linear .42s;
+  }
+  .site-nav.open {
+    margin-top: 8px;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
+    transition-delay: 0s;
+  }
+  .site-nav-inner {
+    display: grid;
+    gap: 7px;
+    padding: 12px;
+    border: 1px solid var(--line-strong);
+    border-radius: 16px;
+    background: rgba(5, 15, 27, .985);
+    box-shadow: 0 22px 65px rgba(0, 0, 0, .5);
+  }
+  .menu-item { width: 100%; }
+  .menu-button { width: 100%; min-height: 48px; padding-inline: 14px; justify-content: space-between; border-color: rgba(148, 169, 194, .12); }
+  .dropdown {
+    position: static;
+    width: 100%;
+    max-height: 0;
+    overflow: hidden;
+    padding: 0 14px;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    transition: max-height .25s ease, padding .25s ease;
+  }
+  .menu-item.open > .dropdown {
+    max-height: min(70svh, 650px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding: 12px 8px 8px;
+    scrollbar-width: thin;
+  }
+  .dropdown-principles { grid-template-columns: 1fr; }
+  .hero, .hero-grid { min-height: auto; }
+  .system-stage {
+    width: 100vw;
+    max-width: 100vw;
+    height: 650px;
+    min-height: 560px;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+  }
+}
+
+@media (max-width: 620px) {
+  body.nav-open { overflow: hidden; }
+  .site-header { background: #020812; }
+  .brand-text h1 { font-size: 1.42rem; }
+  .brand-text small { font-size: .72rem; }
+  .site-nav {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    z-index: 60;
+    width: 100vw;
+    height: calc(100dvh - 84px) !important;
+    margin-top: 0;
+    background: linear-gradient(180deg, rgba(2, 8, 18, .48) 0%, rgba(2, 8, 18, .24) 42%, rgba(2, 8, 18, .14) 100%);
+    -webkit-backdrop-filter: blur(2px) brightness(.86) saturate(1.08);
+    backdrop-filter: blur(2px) brightness(.86) saturate(1.08);
+    transform: translateY(-6px);
+    will-change: transform, opacity;
+    transition:
+      opacity .22s ease,
+      transform .28s cubic-bezier(.25, .1, .25, 1),
+      visibility 0s linear .28s;
+  }
+  .site-nav.open {
+    margin-top: 0;
+    transform: translateY(0);
+    transition-delay: 0s;
+  }
+  .site-nav-inner {
+    height: 100%;
+    min-height: 0;
+    grid-auto-rows: max-content;
+    align-content: start;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding: 18px 18px calc(24px + env(safe-area-inset-bottom));
+    border: 0;
+    border-top: 1px solid rgba(148, 169, 194, .22);
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    scrollbar-width: thin;
+  }
+  .site-nav .menu-button {
+    background: rgba(5, 15, 27, .48);
+    -webkit-backdrop-filter: blur(1px);
+    backdrop-filter: blur(1px);
+    text-shadow: 0 1px 8px rgba(0, 0, 0, .72);
+  }
+  .brand-text h1 { font-size: 1.42rem; }
+  .brand-text small { font-size: .72rem; }
+  .hero { min-height: calc(100svh - 84px); }
+  .system-stage { height: calc(100svh - 170px); min-height: 560px; }
+  .planet-atlas { width: 70px; }
+  .planet-flow, .planet-lens { width: 54px; }
+  .planet-nova, .planet-edge { width: 62px; }
+  .system-legend { width: min(90%, 520px); gap: 10px; padding-inline: 10px; letter-spacing: .1em; font-size: .61rem; }
+  .footer-logo { width: 52px; height: 52px; }
+  .footer-meta { gap: 14px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+  }
+  .planet-holder { will-change: auto; }
+}
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://lk-digital-tools.github.io/#organization",
+        "name": "LK Digital Tools",
+        "url": "https://lk-digital-tools.github.io/",
+        "logo": "https://lk-digital-tools.github.io/assets/lk-logo.png",
+        "email": "support.lkdigitaltools@gmail.com"
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://lk-digital-tools.github.io/#website",
+        "url": "https://lk-digital-tools.github.io/",
+        "name": "LK Digital Tools",
+        "publisher": { "@id": "https://lk-digital-tools.github.io/#organization" },
+        "inLanguage": "en"
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="shell nav-shell">
+      <a class="brand-text" href="#top" aria-label="Digital Tools home">
+        <h1>Digital Tools</h1>
+        <small>Smart solutions, simply for life.</small>
+      </a>
+
+      <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="siteNav">
+        <span></span><span></span><span></span>
+        <span class="sr-only">Toggle navigation</span>
+      </button>
+
+      <nav class="site-nav" id="siteNav" aria-label="Primary navigation">
+        <div class="site-nav-inner">
+        <div class="menu-item">
+          <button class="menu-button" type="button" aria-expanded="false">Products</button>
+          <section class="dropdown" aria-label="Products menu">
+            <h2>Products</h2>
+            <p>Published products and direct access to their official pages.</p>
+            <div class="dropdown-list">
+              <a class="dropdown-link" href="https://lk-digital-tools.github.io/Linux-ops-atlas-page/" target="_blank" rel="noopener">
+                <strong>Linux Ops Atlas</strong><span>Official product page</span>
+              </a>
+              <a class="dropdown-link" href="https://lk-digital-tools.lemonsqueezy.com/checkout/buy/f5c51fd0-fca6-4c3c-a085-2a2be920594c" target="_blank" rel="noopener">
+                <strong>Core v2.2.1 — €17.99</strong><span>Commercial release</span>
+              </a>
+              <a class="dropdown-link" href="https://lk-digital-tools.lemonsqueezy.com/checkout/buy/16c2a507-1d83-434a-907d-7dd7222d7e57?discount=0" target="_blank" rel="noopener">
+                <strong>Free Demo v2.2.0</strong><span>Try the product first</span>
+              </a>
+            </div>
+            <div class="dropdown-meta">Other planets represent work in development and remain unnamed publicly until release.</div>
+          </section>
+        </div>
+
+        <div class="menu-item">
+          <button class="menu-button" type="button" aria-expanded="false">How we build</button>
+          <section class="dropdown" aria-label="How we build menu">
+            <h2>How we build</h2>
+            <p>Our working principles live here rather than in promotional blocks across the homepage.</p>
+            <div class="dropdown-principles">
+              <div><strong>Clear purpose</strong><span>Each product solves a concrete problem.</span></div>
+              <div><strong>Useful first</strong><span>Real conditions matter more than feature noise.</span></div>
+              <div><strong>Respectful design</strong><span>No dark patterns or artificial friction.</span></div>
+              <div><strong>Independent thinking</strong><span>Built for long-term usefulness.</span></div>
+            </div>
+          </section>
+        </div>
+
+        <div class="menu-item">
+          <button class="menu-button" type="button" aria-expanded="false">About</button>
+          <section class="dropdown" aria-label="About menu">
+            <h2>About</h2>
+            <p>LK Digital Tools is an independent studio creating focused software, reference systems, and practical digital tools.</p>
+          </section>
+        </div>
+
+        <div class="menu-item">
+          <button class="menu-button" type="button" aria-expanded="false">Support</button>
+          <section class="dropdown" aria-label="Support menu">
+            <h2>Support</h2>
+            <p>Questions about Linux Ops Atlas or a purchase are handled directly by the studio.</p>
+            <div class="dropdown-list">
+              <a class="dropdown-link" href="mailto:support.lkdigitaltools@gmail.com">
+                <strong>support.lkdigitaltools@gmail.com</strong><span>Open your mail application</span>
+              </a>
+            </div>
+          </section>
+        </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="shell hero-grid">
+        <div class="system-stage" aria-label="LK Digital Tools solar system">
+          <div class="star star-a" aria-hidden="true"></div>
+          <div class="star star-b" aria-hidden="true"></div>
+          <div class="star star-c" aria-hidden="true"></div>
+          <div class="star star-d" aria-hidden="true"></div>
+
+          <div class="orbit orbit-1" aria-hidden="true"></div>
+          <div class="orbit orbit-2" aria-hidden="true"></div>
+          <div class="orbit orbit-3" aria-hidden="true"></div>
+          <div class="orbit orbit-4" aria-hidden="true"></div>
+          <div class="orbit orbit-5" aria-hidden="true"></div>
+
+          <div class="sun" aria-label="LK Digital Tools core">
+            <span class="sun-ring" aria-hidden="true"></span>
+            <span class="sun-ring sun-ring-2" aria-hidden="true"></span>
+            <picture class="lk-logo sun-logo">
+              <source srcset="assets/lk-logo.webp" type="image/webp">
+              <img src="assets/lk-logo.png" width="46" height="46" alt="" fetchpriority="high">
+            </picture>
+          </div>
+
+          <div class="planet-orbit po-atlas">
+            <div class="planet-holder"><div class="planet-counter">
+              <a class="planet planet-atlas" href="https://lk-digital-tools.github.io/Linux-ops-atlas-page/" target="_blank" rel="noopener" aria-label="Linux Ops Atlas, published product"><span>ATLAS</span></a>
+            </div></div>
+          </div>
+          <div class="planet-orbit po-nova" aria-hidden="true"><div class="planet-holder"><div class="planet-counter"><div class="planet planet-nova"></div></div></div></div>
+          <div class="planet-orbit po-edge" aria-hidden="true"><div class="planet-holder"><div class="planet-counter"><div class="planet planet-edge"></div></div></div></div>
+          <div class="planet-orbit po-flow" aria-hidden="true"><div class="planet-holder"><div class="planet-counter"><div class="planet planet-flow"></div></div></div></div>
+          <div class="planet-orbit po-lens" aria-hidden="true"><div class="planet-holder"><div class="planet-counter"><div class="planet planet-lens"></div></div></div></div>
+
+          <div class="system-legend" aria-label="Product status legend">
+            <span class="legend-live">Published</span>
+            <span class="legend-line" aria-hidden="true"></span>
+            <span>In development</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell footer-grid">
+      <picture class="lk-logo footer-logo">
+        <source srcset="assets/lk-logo.webp" type="image/webp">
+        <img src="assets/lk-logo.png" width="58" height="58" alt="LK Digital Tools circular logo">
+      </picture>
+      <div class="footer-meta">
+        <span>© <span id="year"></span></span>
+        <a href="mailto:support.lkdigitaltools@gmail.com">Support</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+  (function () {
+    var nav = document.getElementById('siteNav');
+    var toggle = document.getElementById('navToggle');
+    var year = document.getElementById('year');
+    var menuItems = Array.prototype.slice.call(document.querySelectorAll('.menu-item'));
+
+    if (year) year.textContent = new Date().getFullYear();
+
+    function closeAllMenus(except) {
+      menuItems.forEach(function (item) {
+        if (item === except) return;
+        item.classList.remove('open');
+        var button = item.querySelector('.menu-button');
+        if (button) button.setAttribute('aria-expanded', 'false');
+      });
+    }
+
+    function setItemOpen(item, open) {
+      closeAllMenus(open ? item : null);
+      item.classList.toggle('open', open);
+      var button = item.querySelector('.menu-button');
+      if (button) button.setAttribute('aria-expanded', open ? 'true' : 'false');
+    }
+
+    menuItems.forEach(function (item) {
+      var button = item.querySelector('.menu-button');
+      if (!button) return;
+      button.addEventListener('click', function (event) {
+        event.stopPropagation();
+        setItemOpen(item, !item.classList.contains('open'));
+      });
+    });
+
+    function isMobileNav() {
+      return window.matchMedia('(max-width: 900px)').matches;
+    }
+
+    function isPhoneNav() {
+      return window.matchMedia('(max-width: 620px)').matches;
+    }
+
+    function openMobileNav() {
+      if (!nav || !toggle) return;
+      nav.classList.add('open');
+      toggle.setAttribute('aria-expanded', 'true');
+
+      if (isPhoneNav()) {
+        nav.style.removeProperty('height');
+        document.body.classList.add('nav-open');
+        return;
+      }
+
+      nav.style.height = '0px';
+      requestAnimationFrame(function () {
+        nav.style.height = nav.scrollHeight + 'px';
+      });
+    }
+
+    function closeMobileNav(restoreFocus) {
+      if (!nav || !toggle) return;
+      var wasOpen = nav.classList.contains('open');
+
+      if (isPhoneNav()) {
+        nav.classList.remove('open');
+        nav.style.removeProperty('height');
+        document.body.classList.remove('nav-open');
+      } else if (wasOpen && isMobileNav()) {
+        nav.style.height = nav.getBoundingClientRect().height + 'px';
+        nav.offsetHeight;
+        nav.classList.remove('open');
+        requestAnimationFrame(function () {
+          nav.style.height = '0px';
+        });
+      } else {
+        nav.classList.remove('open');
+        nav.style.removeProperty('height');
+        document.body.classList.remove('nav-open');
+      }
+      toggle.setAttribute('aria-expanded', 'false');
+      closeAllMenus();
+      if (restoreFocus && wasOpen) toggle.focus();
+    }
+
+    if (toggle && nav) {
+      nav.addEventListener('transitionend', function (event) {
+        if (event.propertyName !== 'height') return;
+        if (nav.classList.contains('open') && isMobileNav() && !isPhoneNav()) {
+          nav.style.height = 'auto';
+        }
+      });
+
+      toggle.addEventListener('click', function (event) {
+        event.stopPropagation();
+        if (nav.classList.contains('open')) {
+          closeMobileNav(false);
+        } else if (isMobileNav()) {
+          openMobileNav();
+        }
+      });
+    }
+
+    document.addEventListener('click', function (event) {
+      if (nav && nav.contains(event.target)) return;
+      if (toggle && toggle.contains(event.target)) return;
+      closeAllMenus();
+      if (isMobileNav()) closeMobileNav(false);
+    });
+
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape') closeMobileNav(true);
+    });
+
+    window.addEventListener('resize', function () {
+      if (!isMobileNav() && nav) {
+        nav.classList.remove('open');
+        nav.style.removeProperty('height');
+        document.body.classList.remove('nav-open');
+        if (toggle) toggle.setAttribute('aria-expanded', 'false');
+      } else if (!isPhoneNav()) {
+        document.body.classList.remove('nav-open');
+      }
+    }, { passive: true });
+  })();
+  </script>
+
+  <script>
+  (function () {
+    var motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    var configs = [
+      { selector: '.po-flow',  angle: 205, speed:  0.22 },
+      { selector: '.po-atlas', angle: 338, speed: -0.16 },
+      { selector: '.po-lens',  angle: 145, speed:  0.13 },
+      { selector: '.po-edge',  angle: 315, speed: -0.11 },
+      { selector: '.po-nova',  angle:  75, speed:  0.095 }
+    ];
+    var stage = document.querySelector('.system-stage');
+    var items = configs.map(function (cfg) {
+      var orbit = document.querySelector(cfg.selector);
+      if (!orbit) return null;
+      var holder = orbit.querySelector('.planet-holder');
+      var planet = orbit.querySelector('.planet');
+      if (!holder || !planet) return null;
+      return {
+        orbit: orbit,
+        holder: holder,
+        planet: planet,
+        angle: cfg.angle * Math.PI / 180,
+        speed: cfg.speed,
+        diameter: 300,
+        ellipse: .7
+      };
+    }).filter(Boolean);
+
+    var rafId = 0;
+    var metricRaf = 0;
+    var lastTime = 0;
+
+    function readMetric(item) {
+      var style = getComputedStyle(item.orbit);
+      var diameter = parseFloat(style.getPropertyValue('--diameter'));
+      var ellipse = parseFloat(style.getPropertyValue('--ellipse'));
+      item.baseDiameter = Number.isFinite(diameter) ? diameter : 300;
+      item.ellipse = Number.isFinite(ellipse) ? ellipse : .7;
+    }
+
+    function render() {
+      items.forEach(function (item) {
+        var rx = item.diameter / 2;
+        var ry = rx * item.ellipse;
+        var x = Math.cos(item.angle) * rx;
+        var y = Math.sin(item.angle) * ry;
+        item.holder.style.transform = 'translate(' + x.toFixed(2) + 'px,' + y.toFixed(2) + 'px)';
+      });
+    }
+
+    function updateMetrics() {
+      metricRaf = 0;
+      if (!stage || !items.length) return;
+      var stageWidth = stage.clientWidth || window.innerWidth;
+      var edgePadding = window.innerWidth <= 620 ? 12 : 20;
+      var scale = 1;
+
+      items.forEach(function (item) {
+        readMetric(item);
+        var planetWidth = item.planet.getBoundingClientRect().width || 0;
+        var allowedDiameter = Math.max(0, stageWidth - planetWidth - edgePadding * 2);
+        if (item.baseDiameter > 0) scale = Math.min(scale, allowedDiameter / item.baseDiameter);
+      });
+
+      scale = Math.max(.1, Math.min(1, scale));
+      stage.style.setProperty('--orbit-scale', scale.toFixed(6));
+      items.forEach(function (item) { item.diameter = item.baseDiameter * scale; });
+      render();
+    }
+
+    function scheduleMetricsUpdate() {
+      if (metricRaf) cancelAnimationFrame(metricRaf);
+      metricRaf = requestAnimationFrame(updateMetrics);
+    }
+
+    function frame(timestamp) {
+      if (document.hidden || motionQuery.matches) {
+        rafId = 0;
+        lastTime = 0;
+        return;
+      }
+      var delta = lastTime ? Math.min((timestamp - lastTime) / 1000, .05) : 0;
+      lastTime = timestamp;
+      items.forEach(function (item) { item.angle += item.speed * delta; });
+      render();
+      rafId = requestAnimationFrame(frame);
+    }
+
+    function startAnimation() {
+      if (document.hidden || motionQuery.matches || rafId) return;
+      lastTime = 0;
+      rafId = requestAnimationFrame(frame);
+    }
+
+    function stopAnimation() {
+      if (rafId) cancelAnimationFrame(rafId);
+      rafId = 0;
+      lastTime = 0;
+    }
+
+    function syncMotionPreference() {
+      if (motionQuery.matches) {
+        stopAnimation();
+        render();
+      } else {
+        startAnimation();
+      }
+    }
+
+    window.addEventListener('resize', scheduleMetricsUpdate, { passive: true });
+    window.addEventListener('orientationchange', scheduleMetricsUpdate, { passive: true });
+    document.addEventListener('visibilitychange', function () {
+      if (document.hidden) stopAnimation();
+      else startAnimation();
+    });
+    if (motionQuery.addEventListener) motionQuery.addEventListener('change', syncMotionPreference);
+    else if (motionQuery.addListener) motionQuery.addListener(syncMotionPreference);
+    if ('ResizeObserver' in window && stage) new ResizeObserver(scheduleMetricsUpdate).observe(stage);
+
+    updateMetrics();
+    syncMotionPreference();
+  })();
+  </script>
+</body>
+</html>
